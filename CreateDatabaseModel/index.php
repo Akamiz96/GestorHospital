@@ -19,11 +19,11 @@
             <tbody>
                 <tr>
                     <td>Creación base de datos</td>
-                    <td><a href="CreateDatabase.php">Link</a></td>
+                    <td><a href="createdatabase.php">Link</a></td>
                 </tr>
                 <tr>
-                    <td>Gestor de archivos</td>
-                    <td><a href="gestorarchivos.php">Link</a></td>
+                    <td>Creación tablas</td>
+                    <td><a href="createtables.php">Link</a></td>
                 </tr>
             </tbody>
             </tr>

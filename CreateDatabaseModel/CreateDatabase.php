@@ -18,14 +18,20 @@
     </div>
     <?php
     include_once dirname(__FILE__) . '/config/config.php';
-    $con = mysqli_connect(HOST_DB, USUARIO_DB, USUARIO_PASS);
-    $sql = "CREATE DATABASE " . DATABASE_NAME;
-    if (mysqli_query($con, $sql)) {
-        echo "<br><div class=\"result_query success_text\"> Base de datos " . DATABASE_NAME . " creada </div>";
-    } else {
-        echo "<br><div class=\"result_query error_text\"> Error en la creacion " . mysqli_error($con) . "</div>";
+    $con = @mysqli_connect(HOST_DB, USUARIO_DB, USUARIO_PASS);
+    if (!$con) {
+        echo "<br><div class=\"result_query error_text\"> Error: No se pudo conectar a MySQL. " . mysqli_connect_error() . "</div>";
+    }else{
+        $sql = "CREATE DATABASE " . DATABASE_NAME;
+        if (mysqli_query($con, $sql)) {
+            echo "<br><div class=\"result_query success_text\"> Base de datos " . DATABASE_NAME . " creada </div>";
+        } else {
+            echo "<br><div class=\"result_query error_text\"> Error en la creacion " . mysqli_error($con) . "</div>";
+        }
+        mysqli_close($con);
     }
     ?>
+    
     <br><br>
     <div>
         <a class="back" href="index.php">Regresar</a>
