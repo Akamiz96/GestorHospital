@@ -9,3 +9,13 @@ h2 {
 h3 {
     text-align: center;
 }
+
+.title_page {
+    margin: 2%;
+    font-family: 'Great Vibes', cursive;
+    font-size: 200%;
+}
+
+.title_page h1 {
+    text-shadow: 0px 5px 30px rgba(0, 255, 234, 0);
+}
