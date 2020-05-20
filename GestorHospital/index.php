@@ -19,13 +19,13 @@
 
     <div class="login">
         <div class="login-form">
-            <form action="validate.php" method="POST">
+            <form action="validate.php" method="post">
                 <h3>Nombre de usuario:</h3>
-                <input type="text" placeholder="Nombre de usuario" /><br>
+                <input id="username" name="username" type="text" placeholder="Nombre de usuario" /><br>
                 <h3>Contraseña:</h3>
-                <input type="password" placeholder="Constraseña" />
+                <input id="password" name="password" type="password" placeholder="Constraseña" />
                 <br><br>
-                <input type="submit" value="Login" class="login-button"/>
+                <input type="submit" value="Login" class="login-button" />
                 <br><br>
                 <a class="sign-up" href="signup.php">Registro</a>
             </form>
