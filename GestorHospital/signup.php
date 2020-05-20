@@ -9,7 +9,7 @@
     <link href='https://fonts.googleapis.com/css?family=Ubuntu:500' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Chelsea+Market&display=swap" rel="stylesheet">
-    <title>Salud Sis</title>
+    <title>Sign up Salud Sis</title>
 </head>
 
 <body>
@@ -22,12 +22,16 @@
             <form action="index.php" method="POST">
                 <h3>Nombre de usuario:</h3>
                 <input type="text" placeholder="Nombre de usuario" /><br>
+                <h3>Email:</h3>
+                <input type="text" placeholder="Email" /><br>
+                <h3>Confirmar email:</h3>
+                <input type="text" placeholder="Confirmar email" /><br>
                 <h3>Contraseña:</h3>
-                <input type="password" placeholder="Constraseña" />
+                <input type="password" placeholder="Contraseña" />
                 <br><br>
-                <input type="button" value="Login" class="login-button" />
+                <input type="button" value="Registrarse" class="login-button" />
                 <br><br>
-                <a class="sign-up" href="signup.php">Registro</a>
+                <a class="sign-up" href="index.php">Regresar</a>
             </form>
         </div>
     </div>
