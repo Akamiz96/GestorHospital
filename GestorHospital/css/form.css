@@ -44,7 +44,7 @@ body {
     padding-left: 10px;
 }
 
-.login-form input[type="button"] {
+.login-form input[type="submit"] {
     width: 50%;
     background: #fff;
     border: 5px solid #f2f2f2;

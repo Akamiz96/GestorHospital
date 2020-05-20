@@ -19,13 +19,13 @@
 
     <div class="login">
         <div class="login-form">
-            <form action="index.php" method="POST">
+            <form action="validate.php" method="POST">
                 <h3>Nombre de usuario:</h3>
                 <input type="text" placeholder="Nombre de usuario" /><br>
                 <h3>Contraseña:</h3>
                 <input type="password" placeholder="Constraseña" />
                 <br><br>
-                <input type="button" value="Login" class="login-button" />
+                <input type="submit" value="Login" class="login-button"/>
                 <br><br>
                 <a class="sign-up" href="signup.php">Registro</a>
             </form>

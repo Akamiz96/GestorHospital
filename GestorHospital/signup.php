@@ -29,7 +29,7 @@
                 <h3>Contraseña:</h3>
                 <input type="password" placeholder="Contraseña" />
                 <br><br>
-                <input type="button" value="Registrarse" class="login-button" />
+                <input type="submit" value="Registrarse" class="login-button" />
                 <br><br>
                 <a class="sign-up" href="index.php">Regresar</a>
             </form>
