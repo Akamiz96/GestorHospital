@@ -63,3 +63,9 @@ body {
     text-decoration: underline;
     font-size: 120%;
 }
+
+.error-message {
+    font-size: medium;
+    color: red;
+    text-decoration: underline;
+}

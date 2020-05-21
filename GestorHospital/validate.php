@@ -1,5 +1,4 @@
 <?php
-    //header('Location: signup.php');
     $user_name = $_POST["username"];
     echo $_POST["username"];
     echo $_POST["password"];
@@ -13,7 +12,8 @@
             if (mysqli_affected_rows($con) > 0) {
                 echo "<br><div class=\"result_query success_text\"> " . $_POST['username'] . " found </div>";
             }else{
-                echo "<br><div class=\"result_query error_text\">Error en la actualización: " . mysqli_error($con)  . "</div>"; 
+                echo "<script>alert('Error en la actualización')</script>";
+                //header('Location: index.php');
             }
         } else {
             echo "<br><div class=\"result_query error_text\"> Error " . mysqli_error($con) . "</div>";
