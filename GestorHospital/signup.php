@@ -19,46 +19,76 @@
 
     <div class="login">
         <div class="login-form">
-            <form action="index.php" method="POST">
+            <form action="signup.php" method="POST">
                 <h3>Nombre de usuario:</h3>
-                <input type="text" placeholder="Nombre de usuario" /><br>
                 <?php
                 include_once dirname(__FILE__) . '/utils/validateform.php';
                 if (isset($_POST["username"])) {
                     if (validateUserNameField($_POST["username"])) {
+                        echo '<input id="username" name="username" type="text" placeholder="Nombre de usuario" /><br>';
                     } else {
+                        echo '<input id="username" name="username" type="text" placeholder="Nombre de usuario" value="' . $_POST["username"] . '"/><br>';
                         echo "<div class=\"error-message\">";
-                        echo "ERROR";
+                        echo "Nombre de usuario no válido.";
                         echo "</div>";
                     }
+                }else{
+                    echo '<input id="username" name="username" type="text" placeholder="Nombre de usuario" /><br>';  
                 }
                 ?>
                 <h3>Email:</h3>
-                <input type="text" placeholder="Email" /><br>
-                <h3>Confirmar email:</h3>
-                <input type="text" placeholder="Confirmar email" /><br>
                 <?php
-                    include_once dirname(__FILE__) . '/utils/validateform.php';
-                    if (isset($_POST["password"])) {
-                        if (validatePasswordField($_POST["password"])) {
-                        } else {
-                            echo "<div class=\"error-message\">";
-                            echo "ERROR";
-                            echo "</div>";
-                        }
+                include_once dirname(__FILE__) . '/utils/validateform.php';
+                if (isset($_POST["email"])) {
+                    if (validateEmailField($_POST["email"])) {
+                        echo '<input id="email" name="email" type="text" placeholder="Correo electrónico" /><br>';
+                    } else {
+                        echo '<input id="email" name="email" type="text" placeholder="Correo electrónico" value="' . $_POST["email"] . '"/><br>';
+                        echo "<div class=\"error-message\">";
+                        echo "Correo electrónico no válido.";
+                        echo "</div>";
                     }
+                }else{
+                    echo '<input id="email" name="email" type="text" placeholder="Correo electrónico" /><br>'; 
+                }
+                ?>
+                <h3>Confirmar email:</h3>
+                <?php
+                include_once dirname(__FILE__) . '/utils/validateform.php';
+                if (isset($_POST["emailconfirm"])) {
+                    if (validateEmailField($_POST["emailconfirm"])) {
+                        if (validateConfirmEmail($_POST["email"], $_POST["emailconfirm"])) {
+                            echo '<input id="emailconfirm" name="emailconfirm" type="text" placeholder="Confirmar correo electrónico" /><br>';
+                        }else{
+                            echo '<input id="emailconfirm" name="emailconfirm" type="text" placeholder="Confirmar correo electrónico" value="' . $_POST["emailconfirm"] . '"/><br>';
+                            echo "<div class=\"error-message\">";
+                            echo "Correo electrónico no coincide con el email ingresado en el campo anterior.";
+                            echo "</div>"; 
+                        }
+                    } else {
+                        echo '<input id="emailconfirm" name="emailconfirm" type="text" placeholder="Confirmar correo electrónico" value="' . $_POST["emailconfirm"] . '"/><br>';
+                        echo "<div class=\"error-message\">";
+                        echo "Correo electrónico no válido.";
+                        echo "</div>";
+                    }
+                }else{
+                    echo '<input id="emailconfirm" name="emailconfirm" type="text" placeholder="Confirmar correo electrónico" /><br>';
+                }
                 ?>
                 <h3>Contraseña:</h3>
-                <input type="password" placeholder="Contraseña" /><br>
                 <?php
                 include_once dirname(__FILE__) . '/utils/validateform.php';
                 if (isset($_POST["password"])) {
                     if (validatePasswordField($_POST["password"])) {
+                        echo '<input id="password" name="password" type="password" placeholder="Contraseña" /><br>';
                     } else {
+                        echo '<input id="password" name="password" type="password" placeholder="Contraseña" value="' . $_POST["password"] . '"/><br>';
                         echo "<div class=\"error-message\">";
-                        echo "ERROR";
+                        echo "Contraseña no válida.";
                         echo "</div>";
                     }
+                }else{
+                    echo '<input id="password" name="password" type="password" placeholder="Contraseña" /><br>';
                 }
                 ?>
                 <br>

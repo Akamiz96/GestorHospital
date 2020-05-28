@@ -23,4 +23,23 @@
             return false;
         }
     }
+
+    function validateEmailField($email)
+    {
+        $REGEX_email = "/^[a-zA-Z][a-zA-Z0-9]*(@[a-z]+\\.[a-z]+)+$/";
+        if (preg_match($REGEX_email, $email)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function validateConfirmEmail($confirm_email, $email)
+    {
+        if ($confirm_email == $email) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 ?>

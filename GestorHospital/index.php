@@ -21,32 +21,36 @@
         <div class="login-form">
             <form action="index.php" method="post">
                 <h3>Nombre de usuario:</h3>
-                <input id="username" name="username" type="text" placeholder="Nombre de usuario" autocomplete="off" /><br>
                 <?php
                     include_once dirname(__FILE__) . '/utils/validateform.php';
                     if(isset($_POST["username"])){
                         if(validateUserNameField($_POST["username"])){
-
+                            echo '<input id="username" name="username" type="text" placeholder="Nombre de usuario" autocomplete="off" /><br>';
                         }else{
+                            echo '<input id="username" name="username" type="text" placeholder="Nombre de usuario" autocomplete="off" value="' . $_POST["username"] .  '"/><br>';
                             echo "<div class=\"error-message\">";
-                            echo "ERROR";
+                            echo "Nombre de usuario no válido.";
                             echo "</div>"; 
                         }
+                    }else{
+                        echo '<input id="username" name="username" type="text" placeholder="Nombre de usuario" autocomplete="off" /><br>';
                     }
                     
                 ?>
                 <h3>Contraseña:</h3>
-                <input id="password" name="password" type="password" placeholder="Constraseña" autocomplete="off" /><br>
                 <?php
                     include_once dirname(__FILE__) . '/utils/validateform.php';
                     if (isset($_POST["password"])) {
                         if (validatePasswordField($_POST["password"])) {
-
+                            echo '<input id="password" name="password" type="password" placeholder="Constraseña" autocomplete="off" /><br>';
                         } else {
+                            echo '<input id="password" name="password" type="password" placeholder="Constraseña" autocomplete="off" value="'. $_POST["password"] . '"/><br>';
                             echo "<div class=\"error-message\">";
-                            echo "ERROR";
+                            echo "Constraseña inválida";
                             echo "</div>";   
                         }
+                    }else{
+                      echo '<input id="password" name="password" type="password" placeholder="Constraseña" autocomplete="off" /><br>';  
                     }
                 ?>
                 <br><br>
