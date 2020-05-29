@@ -38,7 +38,7 @@
     if (!$con) {
         echo "<br><div class=\"result_query error_text\"> Error: No se pudo conectar a MySQL. " . mysqli_connect_error() . "</div>";
     } else {
-        $sqlInsertAdmin = 'INSERT INTO Usuarios ( UserName, Email, Contrasenia, Rol, Activo) VALUES (\'admin\', \'admin@admin.com\', \''. password_hash('admin', PASSWORD_DEFAULT) . '\', \'ADMIN\',false)';
+        $sqlInsertAdmin = 'INSERT INTO Usuarios ( UserName, Email, Contrasenia, Rol, Activo) VALUES (\'admin\', \'admin@admin.com\', \'' . password_hash('admin', PASSWORD_DEFAULT) . '\', \'ADMIN\',false)';
         if (mysqli_query($con, $sqlInsertAdmin)) {
             echo "<br><div class=\"result_query success_text\"> Inserción de administrador correcta. </div>";
         } else {
@@ -47,12 +47,59 @@
         mysqli_close($con);
     }
     ?>
+    <br>
+    <?php
+    include_once dirname(__FILE__) . '/config/config.php';
+    $con = @mysqli_connect(HOST_DB, USUARIO_DB, USUARIO_PASS, DATABASE_NAME);
+    if (!$con) {
+        echo "<br><div class=\"result_query error_text\"> Error: No se pudo conectar a MySQL. " . mysqli_connect_error() . "</div>";
+    } else {
+        $sqlHabs = "CREATE TABLE Habitaciones ( Numero INT NOT NULL, PRIMARY KEY(Numero))";
+        if (mysqli_query($con, $sqlHabs)) {
+            echo "<br><div class=\"result_query success_text\"> Creación correcta de la tabla habitaciones. </div>";
+        } else {
+            echo "<br><div class=\"result_query error_text\"> Error en la creación de la tabla habitaciones" . mysqli_error($con) . "</div>";
+        }
+        mysqli_close($con);
+    }
+    ?>
+    <br>
+    <?php
+    include_once dirname(__FILE__) . '/config/config.php';
+    $con = @mysqli_connect(HOST_DB, USUARIO_DB, USUARIO_PASS, DATABASE_NAME);
+    if (!$con) {
+        echo "<br><div class=\"result_query error_text\"> Error: No se pudo conectar a MySQL. " . mysqli_connect_error() . "</div>";
+    } else {
+        $sqlPacientes = "CREATE TABLE Pacientes ( Identificacion BIGINT NOT NULL, Nombre VARCHAR(20) NOT NULL, PRIMARY KEY(Identificacion))";
+        if (mysqli_query($con, $sqlPacientes)) {
+            echo "<br><div class=\"result_query success_text\"> Creación correcta de la tabla Pacientes. </div>";
+        } else {
+            echo "<br><div class=\"result_query error_text\"> Error en la creación de la tabla Pacientes" . mysqli_error($con) . "</div>";
+        }
+        mysqli_close($con);
+    }
+    ?>
+    <br>
+    <?php
+    include_once dirname(__FILE__) . '/config/config.php';
+    $con = @mysqli_connect(HOST_DB, USUARIO_DB, USUARIO_PASS, DATABASE_NAME);
+    if (!$con) {
+        echo "<br><div class=\"result_query error_text\"> Error: No se pudo conectar a MySQL. " . mysqli_connect_error() . "</div>";
+    } else {
+        $sqlCamas = "CREATE TABLE Camas ( Numero INT NOT NULL, HabNumero INT NOT NULL, PacienteId BIGINT, PRIMARY KEY (Numero,HabNumero), FOREIGN KEY (HabNumero) REFERENCES Habitaciones(Numero), FOREIGN KEY (PacienteId) REFERENCES Pacientes(Identificacion))";
+        echo $sqlCamas;
+        if (mysqli_query($con, $sqlCamas)) {
+            echo "<br><div class=\"result_query success_text\"> Creación correcta de la tabla Camas. </div>";
+        } else {
+            echo "<br><div class=\"result_query error_text\"> Error en la creación de la tabla Camas" . mysqli_error($con) . "</div>";
+        }
+        mysqli_close($con);
+    }
+    ?>
     <br><br>
     <div>
         <a class="back" href="index.php">Regresar</a>
     </div>
-
-
 </body>
 
 </html>
