@@ -54,11 +54,33 @@
         } else {
             //Insert value
             if (mysqli_query($con, $sql)) {
-                $return_text = '<div class="success-message error-insert">Creación del paciente exitosamente';
-                $return_text .= '</div>';
-                $GLOBALS['sqlerror'] = $return_text;
-                mysqli_close($con);
-                return true;
+                $sql_update = 'UPDATE Camas SET PacienteId=';
+                $sql_update .= $pacientXcama->id;
+                $sql_update .= ' WHERE Numero=';
+                $sql_update .= $pacientXcama->numCama;
+                echo $sql_update;
+                // Create connection
+                $con = mysqli_connect(HOST_DB, USUARIO_DB, USUARIO_PASS, DATABASE_NAME);
+                // Verify connection
+                if (mysqli_connect_errno()) {
+                    return false;
+                } else {
+                    //Insert value
+                    if (mysqli_query($con, $sql_update)) {
+                        $return_text = '<div class="success-message error-insert">Creación del paciente exitosamente';
+                        $return_text .= '</div>';
+                        $GLOBALS['sqlerror'] = $return_text;
+                        mysqli_close($con);
+                        return true;
+                    } else {
+                        $return_text = '<div class="error-message error-insert">Error en la creación del paciente. Error en la base de datos: ';
+                        $return_text .= mysqli_error($con);
+                        $return_text .= '</div>';
+                        $GLOBALS['sqlerror'] = $return_text;
+                        mysqli_close($con);
+                        return false;
+                    }
+                }
             } else {
                 $return_text = '<div class="error-message error-insert">Error en la creación del paciente. Error en la base de datos: ';
                 $return_text .= mysqli_error($con);
