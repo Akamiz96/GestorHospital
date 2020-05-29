@@ -1,14 +1,29 @@
 <?php
     include_once dirname(__FILE__) . '/../config/config.php';
+    include_once dirname(__FILE__) . '/../model/pacient.php';
+    include_once dirname(__FILE__) . '/../model/pacientXcama.php';
+    include_once dirname(__FILE__) . '/sqlqueries/pacients.php';
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (isset($_POST["identificacion"]) && isset($_POST["nombre"]) && isset($_POST["apellido"]) && isset($_POST["diagnostico"]) && isset($_POST["prioridad"]) && isset($_POST["ingreso"]) && isset($_POST["dias"])) {
-            echo $_POST["identificacion"];
-            echo $_POST["nombre"];
-            echo $_POST["apellido"];
-            echo $_POST["diagnostico"];
-            echo $_POST["prioridad"];
-            echo $_POST["ingreso"];
-            echo $_POST["dias"];       
+            $pacient = new Pacient();
+            $pacient->id = $_POST["identificacion"];
+            $pacient->nombre = $_POST["nombre"];
+            $pacient->apellido = $_POST["apellido"];
+            $resultPaciente = addPaciente($pacient);
+            if($resultPaciente == true){
+                $pacientXcama = new PacientXCama();
+                $pacientXcama->id = $_POST["identificacion"];
+                $pacientXcama->numCama = $_GET["bed"];
+                $pacientXcama->fecha = $_POST["ingreso"];
+                $pacientXcama->duracion = $_POST["dias"];
+                $pacientXcama->prioridad = $_POST["prioridad"];
+                //$pacientXcama->medico = $_POST["identificacion"];
+                $pacientXcama->diagnostico = $_POST["diagnostico"];
+                $resultPacientXCama = addPacienteXCama($pacientXcama);
+                if($resultPacientXCama != true){
+                    echo $GLOBALS['sqlerror'];
+                }
+            } 
         }
     }
 ?>
@@ -31,7 +46,9 @@
     }
     ?>
     <a href="medic.php">Regresar</a>
-    <form action="infobed.php" method="post">
+    <?php
+        echo '<form action="infobed.php?bed='. $_GET["bed"] .'"method="post">';
+    ?>
         <h3>Identificación</h3>
         <input type="number" name="identificacion" id="identificacion" placeholder="Identificación" autocomplete="off"><br>
         <h3>Nombre del paciente</h3>

@@ -70,7 +70,7 @@
     if (!$con) {
         echo "<br><div class=\"result_query error_text\"> Error: No se pudo conectar a MySQL. " . mysqli_connect_error() . "</div>";
     } else {
-        $sqlPacientes = "CREATE TABLE Pacientes ( Identificacion BIGINT NOT NULL, Nombre VARCHAR(20) NOT NULL, PRIMARY KEY(Identificacion))";
+        $sqlPacientes = "CREATE TABLE Pacientes ( Identificacion BIGINT NOT NULL, Nombre VARCHAR(20) NOT NULL, Apellido VARCHAR(20) NOT NULL, PRIMARY KEY(Identificacion))";
         if (mysqli_query($con, $sqlPacientes)) {
             echo "<br><div class=\"result_query success_text\"> Creación correcta de la tabla Pacientes. </div>";
         } else {
@@ -91,6 +91,23 @@
             echo "<br><div class=\"result_query success_text\"> Creación correcta de la tabla Camas. </div>";
         } else {
             echo "<br><div class=\"result_query error_text\"> Error en la creación de la tabla Camas" . mysqli_error($con) . "</div>";
+        }
+        mysqli_close($con);
+    }
+    ?>
+    <br>
+    <?php
+    include_once dirname(__FILE__) . '/config/config.php';
+    $con = @mysqli_connect(HOST_DB, USUARIO_DB, USUARIO_PASS, DATABASE_NAME);
+    if (!$con) {
+        echo "<br><div class=\"result_query error_text\"> Error: No se pudo conectar a MySQL. " . mysqli_connect_error() . "</div>";
+    } else {
+        $sqlPacienteXCama = "CREATE TABLE PacientesXCamas ( NumeroCama INT NOT NULL, PacienteId BIGINT NOT NULL, FechaIngreso DATE NOT NULL, Duracion INT NOT NULL, Prioridad CHAR(5) NOT NULL, Medico VARCHAR(50), Diagnostico MEDIUMTEXT NOT NULL, PRIMARY KEY (NumeroCama,PacienteId,FechaIngreso), FOREIGN KEY (NumeroCama) REFERENCES Camas(Numero), FOREIGN KEY (PacienteId) REFERENCES Pacientes(Identificacion))";
+        echo $sqlPacienteXCama;
+        if (mysqli_query($con, $sqlPacienteXCama)) {
+            echo "<br><div class=\"result_query success_text\"> Creación correcta de la tabla PacientesXCamas. </div>";
+        } else {
+            echo "<br><div class=\"result_query error_text\"> Error en la creación de la tabla PacientesXCamas" . mysqli_error($con) . "</div>";
         }
         mysqli_close($con);
     }
