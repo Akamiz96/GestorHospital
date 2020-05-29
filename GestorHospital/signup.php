@@ -42,9 +42,11 @@
         <h1>Gestor del Hospital</h1>
     </div>
     <?php
-        if($GLOBALS['agregado'] == false && $GLOBALS['add'] == true){
-            echo $GLOBALS['sqlerror'];
-        }
+        if(isset($GLOBALS['agregado'])&&isset($GLOBALS['add'])){
+            if ($GLOBALS['agregado'] == false && $GLOBALS['add'] == true) {
+                echo $GLOBALS['sqlerror'];
+            }
+        }  
     ?>
     <div class="login">
         <div class="login-form">

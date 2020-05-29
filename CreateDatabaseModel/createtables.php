@@ -22,11 +22,11 @@
     if (!$con) {
         echo "<br><div class=\"result_query error_text\"> Error: No se pudo conectar a MySQL. " . mysqli_connect_error() . "</div>";
     } else {
-        $sqlAdministradores = "CREATE TABLE Administradores ( UserName VARCHAR(50) NOT NULL, PRIMARY KEY(UserName), Email VARCHAR(100), Contrasenia CHAR(60), Activo BOOLEAN )";
-        if (mysqli_query($con, $sqlAdministradores)) {
-            echo "<br><div class=\"result_query success_text\"> Tabla Administradores creada correctamente </div>";
+        $sqlUsers = "CREATE TABLE Usuarios ( UserName VARCHAR(50) NOT NULL, PRIMARY KEY(UserName), Email VARCHAR(100), Contrasenia CHAR(60), Rol CHAR(7) NOT NULL, Activo BOOLEAN )";
+        if (mysqli_query($con, $sqlUsers)) {
+            echo "<br><div class=\"result_query success_text\"> Tabla Usuarios creada correctamente </div>";
         } else {
-            echo "<br><div class=\"result_query error_text\"> Error en la creacion de la tabla Adminsitradores: " . mysqli_error($con) . "</div>";
+            echo "<br><div class=\"result_query error_text\"> Error en la creacion de la tabla Usuarios: " . mysqli_error($con) . "</div>";
         }
         mysqli_close($con);
     }
@@ -38,23 +38,7 @@
     if (!$con) {
         echo "<br><div class=\"result_query error_text\"> Error: No se pudo conectar a MySQL. " . mysqli_connect_error() . "</div>";
     } else {
-        $sqlMedicos = "CREATE TABLE Medicos ( UserName VARCHAR(50) NOT NULL, PRIMARY KEY(UserName), Email VARCHAR(100), Contrasenia CHAR(60), Activo BOOLEAN )";
-        if (mysqli_query($con, $sqlMedicos)) {
-            echo "<br><div class=\"result_query success_text\"> Tabla Medicos creada correctamente </div>";
-        } else {
-            echo "<br><div class=\"result_query error_text\"> Error en la creacion de la tabla Medicos: " . mysqli_error($con) . "</div>";
-        }
-        mysqli_close($con);
-    }
-    ?>
-    <br>
-    <?php
-    include_once dirname(__FILE__) . '/config/config.php';
-    $con = @mysqli_connect(HOST_DB, USUARIO_DB, USUARIO_PASS, DATABASE_NAME);
-    if (!$con) {
-        echo "<br><div class=\"result_query error_text\"> Error: No se pudo conectar a MySQL. " . mysqli_connect_error() . "</div>";
-    } else {
-        $sqlInsertAdmin = "INSERT INTO Administradores ( UserName, Email, Contrasenia, Activo) VALUES ('admin', 'admin@admin.com', 'admin', false)";
+        $sqlInsertAdmin = 'INSERT INTO Usuarios ( UserName, Email, Contrasenia, Rol, Activo) VALUES (\'admin\', \'admin@admin.com\', \''. password_hash('admin', PASSWORD_DEFAULT) . '\', \'ADMIN\',false)';
         if (mysqli_query($con, $sqlInsertAdmin)) {
             echo "<br><div class=\"result_query success_text\"> Inserción de administrador correcta. </div>";
         } else {
