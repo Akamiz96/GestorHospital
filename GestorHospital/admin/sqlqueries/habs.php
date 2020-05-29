@@ -25,3 +25,25 @@
             }
         }
     }
+
+    function createHab($number){
+        $sqlInsert = "INSERT INTO Habitaciones (Numero) VALUES (";
+        $sqlInsert .= $number . ')';
+        $con = mysqli_connect(HOST_DB, USUARIO_DB, USUARIO_PASS, DATABASE_NAME);
+        // Verify connection
+        if (mysqli_connect_errno()) {
+            return 'Error conexión base de datos.' . mysqli_error($con);
+        } else {
+            //Insert value
+            if (mysqli_query($con, $sqlInsert)) {
+                mysqli_close($con);
+                return true;
+            } else {
+                
+                $r = 'Error inserción de la habitación.' . mysqli_error($con);
+                mysqli_close($con);
+                return $r;
+            }
+        }
+    }
+?>

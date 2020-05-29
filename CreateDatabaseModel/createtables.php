@@ -86,8 +86,7 @@
     if (!$con) {
         echo "<br><div class=\"result_query error_text\"> Error: No se pudo conectar a MySQL. " . mysqli_connect_error() . "</div>";
     } else {
-        $sqlCamas = "CREATE TABLE Camas ( Numero INT NOT NULL, HabNumero INT NOT NULL, PacienteId BIGINT, PRIMARY KEY (Numero,HabNumero), FOREIGN KEY (HabNumero) REFERENCES Habitaciones(Numero), FOREIGN KEY (PacienteId) REFERENCES Pacientes(Identificacion))";
-        echo $sqlCamas;
+        $sqlCamas = "CREATE TABLE Camas ( Numero INT NOT NULL, HabNumero INT NOT NULL, PacienteId BIGINT, PRIMARY KEY (Numero), FOREIGN KEY (HabNumero) REFERENCES Habitaciones(Numero), FOREIGN KEY (PacienteId) REFERENCES Pacientes(Identificacion))";
         if (mysqli_query($con, $sqlCamas)) {
             echo "<br><div class=\"result_query success_text\"> Creación correcta de la tabla Camas. </div>";
         } else {

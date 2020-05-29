@@ -9,7 +9,7 @@
 
 <body>
     <h1>Administrador</h1>
-
+    <a href="addhab.php">Adicionar nueva habitación</a>
     <table>
         <caption>Lista de habitaciones</caption>
         <thead>
@@ -35,6 +35,7 @@
         </tbody>
     </table>
 
+    <a href="addbed.php">Adicionar nueva cama</a>
     <table>
         <caption>Lista de Camas</caption>
         <thead>
