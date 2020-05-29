@@ -19,6 +19,9 @@
         } else {
             //Insert value
             if (mysqli_query($con, $sql)) {
+                $return_text = '<div class="success-message error-insert">Creación del usuario exitosamente';
+                $return_text .= '</div>';
+                $GLOBALS['sqlerror'] = $return_text;
                 mysqli_close($con);
                 return true;
             }else{

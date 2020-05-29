@@ -7,6 +7,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (validateUserNameField($_POST["username"]) && validatePasswordField($_POST["password"])) {
             if (signIn($_POST["username"], $_POST["password"])) {
                 $GLOBALS['signin'] = true;
+                if($GLOBALS['Rol'] == 'MED'){
+                    header('Location: medic/medic.php');
+                }
+                if ($GLOBALS['Rol'] == 'ADMIN') {
+                    header('Location: admin/admin.php');
+                }
             } else {
                 $GLOBALS['signin'] = false;
             }

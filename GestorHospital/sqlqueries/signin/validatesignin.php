@@ -15,6 +15,7 @@
                         $return_text = '<div class="error-message error-insert">Medico/Administrador encontrado';
                         $return_text .= '</div>';
                         $GLOBALS['return_text'] = $return_text;
+                        $GLOBALS['Rol'] = $fila['Rol'];
                         mysqli_close($con);
                         return true; 
                     }else{

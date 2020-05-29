@@ -70,6 +70,12 @@ body {
     text-decoration: underline;
 }
 
+.success-message {
+    font-size: medium;
+    color: green;
+    text-decoration: underline;
+}
+
 .error-insert{
     box-sizing: border-box;
     margin: 1% auto;

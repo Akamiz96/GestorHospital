@@ -46,6 +46,9 @@
             if ($GLOBALS['agregado'] == false && $GLOBALS['add'] == true) {
                 echo $GLOBALS['sqlerror'];
             }
+            if ($GLOBALS['agregado'] == true && $GLOBALS['add'] == true) {
+                echo $GLOBALS['sqlerror'];
+            }
         }  
     ?>
     <div class="login">
