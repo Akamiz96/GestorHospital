@@ -70,7 +70,22 @@
                 } 
             }
 
+            $sql_cama = "";
+            $sql_cama.="UPDATE Camas SET ";
+            $sql_cama.= "PacienteId = '".$_POST['identificacion']."',";
+            $sql_cama.= "Disponible = false";                        
+            $sql_cama.=" WHERE Numero = ".$_POST['cama'];
     
+            if(mysqli_query($con,$sql_cama))
+            {
+                $actualizo = true;
+                echo "Se ha actualizado el cama: ".$_POST['cama']."<br>";
+            }
+            else
+            {
+                echo "Error actualizado al cama: ".mysqli_error($con)."<br>";
+            }
+
             echo $str_datos;
             mysqli_close($con);
         }

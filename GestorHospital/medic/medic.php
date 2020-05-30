@@ -10,8 +10,8 @@
 <body>
     <h1>Medic</h1>
     
-    <table>
-        <caption>Lista de Camas disponibles</caption>
+    <table border="1" style="width:100%">
+        <caption>Lista de Habitaciones disponibles</caption>
         <thead>
             <tr>
                 <th>Habitación número</th>

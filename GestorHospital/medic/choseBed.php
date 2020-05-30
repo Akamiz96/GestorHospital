@@ -1,3 +1,5 @@
+<h1>Lista de camas disponibles</h1>
+
 <?php
     include_once dirname(__FILE__) . '/../config/config.php';
     $str_datos = "";
