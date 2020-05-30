@@ -213,10 +213,11 @@
             Identificacion BIGINT NOT NULL, 
             Nombre VARCHAR(20) NOT NULL, 
             Apellido VARCHAR(20) NOT NULL,
-            Prioridad INT,
+            Prioridad VARCHAR(20),
             Diagnostico VARCHAR(100),
             FechaDeIngreso DATE,
             DuracionEnDias INT,
+            IdCama INT,
             NombreMedico VARCHAR(50),
             FOREIGN KEY (NombreMedico) REFERENCES USUARIOS (UserName),
             PRIMARY KEY(Identificacion))";

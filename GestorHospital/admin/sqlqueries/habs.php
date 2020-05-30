@@ -1,5 +1,6 @@
 <?php
-    function list_habs(){
+    function list_habs()
+    {
         $sqlSearch = "SELECT * FROM Habitaciones ORDER BY Numero ASC";
         $con = mysqli_connect(HOST_DB, USUARIO_DB, USUARIO_PASS, DATABASE_NAME);
         // Verify connection

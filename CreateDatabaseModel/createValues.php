@@ -2073,8 +2073,8 @@
         } 
         else 
         {
-            $sqlInsertAdmin = 'INSERT INTO Pacientes (Identificacion, Nombre, Apellido, Prioridad, Diagnostico, FechaDeIngreso, DuracionEnDias, NombreMedico) 
-            VALUES ( 1127342601 ,\'paciente1\', \'enfermo1\' , null, null, null, null, null )';
+            $sqlInsertAdmin = 'INSERT INTO Pacientes (Identificacion, Nombre, Apellido, Prioridad, Diagnostico, FechaDeIngreso, DuracionEnDias, IdCama, NombreMedico) 
+            VALUES ( 1127342601 ,\'paciente1\', \'enfermo1\' , null, null, null, null, null, null )';
             
             if (mysqli_query($con, $sqlInsertAdmin)) 
             {
@@ -2097,8 +2097,8 @@
         } 
         else 
         {
-            $sqlInsertAdmin = 'INSERT INTO Pacientes (Identificacion, Nombre, Apellido, Prioridad, Diagnostico, FechaDeIngreso, DuracionEnDias, NombreMedico) 
-            VALUES ( 1127342602 ,\'paciente2\', \'enfermo2\' , null, null, null, null, null )';
+            $sqlInsertAdmin = 'INSERT INTO Pacientes (Identificacion, Nombre, Apellido, Prioridad, Diagnostico, FechaDeIngreso, DuracionEnDias, IdCama, NombreMedico) 
+            VALUES ( 1127342602 ,\'paciente2\', \'enfermo2\' , null, null, null, null, null, null )';
             
             if (mysqli_query($con, $sqlInsertAdmin)) 
             {
@@ -2121,8 +2121,8 @@
         } 
         else 
         {
-            $sqlInsertAdmin = 'INSERT INTO Pacientes (Identificacion, Nombre, Apellido, Prioridad, Diagnostico, FechaDeIngreso, DuracionEnDias, NombreMedico) 
-            VALUES ( 1127342603 ,\'paciente3\', \'enfermo3\' , null, null, null, null, null )';
+            $sqlInsertAdmin = 'INSERT INTO Pacientes (Identificacion, Nombre, Apellido, Prioridad, Diagnostico, FechaDeIngreso, DuracionEnDias, IdCama, NombreMedico) 
+            VALUES ( 1127342603 ,\'paciente3\', \'enfermo3\' , null, null, null, null, null, null )';
             
             if (mysqli_query($con, $sqlInsertAdmin)) 
             {
@@ -2145,8 +2145,8 @@
         } 
         else 
         {
-            $sqlInsertAdmin = 'INSERT INTO Pacientes (Identificacion, Nombre, Apellido, Prioridad, Diagnostico, FechaDeIngreso, DuracionEnDias, NombreMedico) 
-            VALUES ( 1127342600 ,\'paciente0\', \'enfermo0\' , null, null, null, null, null )';
+            $sqlInsertAdmin = 'INSERT INTO Pacientes (Identificacion, Nombre, Apellido, Prioridad, Diagnostico, FechaDeIngreso, DuracionEnDias, IdCama, NombreMedico) 
+            VALUES ( 1127342600 ,\'paciente0\', \'enfermo0\' , null, null, null, null, null, null )';
             
             if (mysqli_query($con, $sqlInsertAdmin)) 
             {
@@ -2169,8 +2169,8 @@
         } 
         else 
         {
-            $sqlInsertAdmin = 'INSERT INTO Pacientes (Identificacion, Nombre, Apellido, Prioridad, Diagnostico, FechaDeIngreso, DuracionEnDias, NombreMedico) 
-            VALUES ( 1127342605 ,\'paciente5\', \'enfermo5\' , null, null, null, null, null )';
+            $sqlInsertAdmin = 'INSERT INTO Pacientes (Identificacion, Nombre, Apellido, Prioridad, Diagnostico, FechaDeIngreso, DuracionEnDias, IdCama, NombreMedico) 
+            VALUES ( 1127342605 ,\'paciente5\', \'enfermo5\' , null, null, null, null, null, null )';
             
             if (mysqli_query($con, $sqlInsertAdmin)) 
             {

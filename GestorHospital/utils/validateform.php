@@ -36,7 +36,8 @@
 
     function validateConfirmEmail($confirm_email, $email)
     {
-        if ($confirm_email == $email) {
+        if ($confirm_email == $email) 
+        {
             return true;
         } else {
             return false;

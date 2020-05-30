@@ -15,28 +15,27 @@
         <thead>
             <tr>
                 <th>Habitación número</th>
-                <th>Cama Número</th>
                 <th>Asignar</th>
             </tr>
         </thead>
         <tbody>
             <?php
             include_once dirname(__FILE__) . '/../config/config.php';
-            include_once dirname(__FILE__) . '/sqlqueries/beds.php';
-            $beds = list_beds();
-            while ($fila = mysqli_fetch_array($beds)) {
-                if ($fila['PacienteId'] == null) {
-                    echo '<tr>';
-                    echo '<td>';
-                    echo $fila['HabNumero'];
-                    echo '</td>';
-                    echo '<td>';
-                    echo $fila['Numero'];
-                    echo '</td>';
-                    echo '<td><a href="infobed.php?bed=' . $fila['Numero'] . '">Asignar</a></td>';
-                    echo '</tr>';
-                }
+            include_once dirname(__FILE__) . '/../admin/sqlqueries/habs.php';
+            
+            $habitaciones = list_habs();
+            $str_pantalla ='';
+            
+            while ($fila = mysqli_fetch_array($habitaciones)) 
+            {
+                $str_pantalla.='<tr>';
+                $str_pantalla.= "<td>".$fila['Numero']."</td>";
+                $str_pantalla.= "<td><a href='choseBed.php?idHab=".$fila['Numero']."'>Ver camas</td>";
+                $str_pantalla.= "</tr>";
+                
             }
+
+            echo $str_pantalla;
             ?>
         </tbody>
     </table>

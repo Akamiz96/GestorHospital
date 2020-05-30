@@ -31,7 +31,6 @@
         mysqli_close($con);
     }
 
-
     function addPacienteXCama($pacientXcama){
         $sql = 'INSERT INTO PacientesXCamas (NumeroCama, PacienteId, FechaIngreso, Duracion, Prioridad, Diagnostico) VALUES (';
         $sql .= $pacientXcama->numCama;
