@@ -25,6 +25,10 @@
                     <td>Creación tablas</td>
                     <td><a href="createtables.php">Link</a></td>
                 </tr>
+                <tr>
+                    <td>Insercion de valores</td>
+                    <td><a href="createValues.php">Link</a></td>
+                </tr>
             </tbody>
             </tr>
         </table>
