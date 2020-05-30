@@ -11,6 +11,7 @@
     }
 
     $idHabitacion = $_GET['idHab'];
+    $idMedico = $_GET['idMedico'];
 
     $str_datos.='<table border="1" style="width:100%">';
     $str_datos.='<tr>';
@@ -36,7 +37,7 @@
                 {
                     $str_datos.= "<td>No</td>";
                 }
-                $str_datos.= "<td><a href='ChosePacient.php?bed=".$fila['Numero']."'>Asignar paciente a la cama ".$fila['Numero']."</td>";
+                $str_datos.= "<td><a href='ChosePacient.php?bed=".$fila['Numero']."&idMedico2=".$idMedico."'>Asignar paciente a la cama ".$fila['Numero']."</td>";
             $str_datos.= "</tr>";
         }
     }

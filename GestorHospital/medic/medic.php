@@ -8,8 +8,14 @@
 </head>
 
 <body>
-    <h1>Medic</h1>
     
+    
+    <?php
+        session_start();
+        $varf = session_id();
+        echo "<h1>Bienvenido ".$varf."</h1>";
+    ?>
+
     <table border="1" style="width:100%">
         <caption>Lista de Habitaciones disponibles</caption>
         <thead>
@@ -20,6 +26,8 @@
         </thead>
         <tbody>
             <?php
+            $varf = session_id();
+
             include_once dirname(__FILE__) . '/../config/config.php';
             include_once dirname(__FILE__) . '/../admin/sqlqueries/habs.php';
             
@@ -30,7 +38,7 @@
             {
                 $str_pantalla.='<tr>';
                 $str_pantalla.= "<td>".$fila['Numero']."</td>";
-                $str_pantalla.= "<td><a href='choseBed.php?idHab=".$fila['Numero']."'>Ver camas</td>";
+                $str_pantalla.= "<td><a href='choseBed.php?idHab=".$fila['Numero']."&idMedico=".$varf."'>Ver camas</td>";
                 $str_pantalla.= "</tr>";
                 
             }

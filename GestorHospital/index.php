@@ -2,22 +2,32 @@
 include_once dirname(__FILE__) . '/utils/validateform.php';
 include_once dirname(__FILE__) . '/sqlqueries/signin/validatesignin.php';
 include_once dirname(__FILE__) . '../config/config.php';
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["username"]) && isset($_POST["password"])) {
-        if (validateUserNameField($_POST["username"]) && validatePasswordField($_POST["password"])) {
-            if (signIn($_POST["username"], $_POST["password"])) {
+        if (validateUserNameField($_POST["username"]) && validatePasswordField($_POST["password"])) 
+        {
+            if (signIn($_POST["username"], $_POST["password"])) 
+            {
                 $GLOBALS['signin'] = true;
-                if($GLOBALS['Rol'] == 'MEDICO'){
+                if($GLOBALS['Rol'] == 'MEDICO')
+                {
+                    session_id($_POST['username']);
                     header('Location: medic/medic.php');
                 }
-                if ($GLOBALS['Rol'] == 'ADMIN') {
+                if ($GLOBALS['Rol'] == 'ADMIN') 
+                {
                     header('Location: admin/admin.php');
                 }
-            } else {
+            } 
+            else 
+            {
                 $GLOBALS['signin'] = false;
             }
             $GLOBALS['validate'] = true;
-        } else {
+        } 
+        else 
+        {
             $GLOBALS['signin'] = false;
             $GLOBALS['validate'] = false;
         }

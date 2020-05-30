@@ -7,7 +7,7 @@
     
     if ($_SERVER["REQUEST_METHOD"] == "POST") 
     {
-        if (isset($_POST["cama"]) && isset($_POST["identificacion"]) && isset($_POST["nombre"]) && isset($_POST["apellido"]) && isset($_POST["diagnostico"]) && isset($_POST["prioridad"]) && isset($_POST["ingreso"]) && isset($_POST["dias"])) 
+        if (isset($_POST["medico"]) && isset($_POST["cama"]) && isset($_POST["identificacion"]) && isset($_POST["nombre"]) && isset($_POST["apellido"]) && isset($_POST["diagnostico"]) && isset($_POST["prioridad"]) && isset($_POST["ingreso"]) && isset($_POST["dias"])) 
         {
             include_once dirname(__FILE__) . '/../config/config.php';
             $str_datos = "";
@@ -31,6 +31,7 @@
                     $sql.= "Prioridad = '".$_POST['prioridad']."',";
                     $sql.= "Diagnostico = '".$_POST['diagnostico']."',";
                     $sql.= "IdCama = ".$_POST['cama'].",";
+                    $sql.= "NombreMedico = '".$_POST['medico']."',";
                     $sql.= "FechaDeIngreso = CAST('".$_POST['ingreso']."' AS DATETIME),";
                     $sql.= "DuracionEnDias = ".$_POST['dias']." ";                         
                     $sql.=" WHERE Identificacion = ".$_POST['identificacion'];
@@ -58,7 +59,7 @@
                 $sql.=" WHERE Identificacion = ".$_POST['identificacion'];
         
                 $sql = "INSERT INTO Pacientes (Identificacion, Nombre, Apellido, Prioridad, Diagnostico, FechaDeIngreso, DuracionEnDias, IdCama, NombreMedico)"; 
-                $sql.=" VALUES ( ".$_POST['identificacion']." ,'".$_POST['nombre']."', '".$_POST['apellido']."' , '".$_POST['prioridad']."', '".$_POST['diagnostico']."', CAST('".$_POST['ingreso']."' AS DATETIME), ".$_POST['dias'].", ".$_POST['cama'].", null )";
+                $sql.=" VALUES ( ".$_POST['identificacion']." ,'".$_POST['nombre']."', '".$_POST['apellido']."' , '".$_POST['prioridad']."', '".$_POST['diagnostico']."', CAST('".$_POST['ingreso']."' AS DATETIME), ".$_POST['dias'].", ".$_POST['cama'].", '".$_POST['medico']."' )";
                 
                 if (mysqli_query($con, $sql)) 
                 {
@@ -122,8 +123,8 @@
 
         if(isset($_GET['apellido']) == 1 && isset($_GET['nombre']) == 1 && isset($_GET['id']) == 1)
         {
-            $srt_pantalla.='<h3>Id cama</h3>';
-            $srt_pantalla.='<input type="number" name="cama" id="cama" value="'.$_GET['bed'].'" autocomplete="off"><br>';
+            $srt_pantalla.='<input type="hidden" name="cama" id="cama" value="'.$_GET['bed'].'" autocomplete="off"><br>';
+            $srt_pantalla.='<input type="hidden" name="medico" id="medico" value="'.$_GET['idMedico3'].'" autocomplete="off"><br>';
 
             $srt_pantalla.='<h3>Identificación</h3>';
             $srt_pantalla.='<input type="number" name="identificacion" id="identificacion" value="'.$_GET['id'].'" autocomplete="off"><br>';
