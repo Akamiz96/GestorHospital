@@ -112,6 +112,81 @@
         mysqli_close($con);
     }
     ?>
+
+     <!--
+        Pedro estuvo aqui.
+    -->
+    
+    <?php
+    include_once dirname(__FILE__) . '/config/config.php';
+    $con = @mysqli_connect(HOST_DB, USUARIO_DB, USUARIO_PASS, DATABASE_NAME);
+    if (!$con) 
+    {
+        echo "<br><div class=\"result_query error_text\"> Error: No se pudo conectar a MySQL. " . mysqli_connect_error() . "</div>";
+    } 
+    else 
+    {
+        $sqlCamas = "CREATE TABLE Recursos 
+        ( 
+            Numero INT NOT NULL, 
+            NombreDeRecurso CHAR(30) NOT NULL, 
+            Cantidad INT NOT NULL, 
+            PRIMARY KEY (Numero)
+        )";
+
+        if (mysqli_query($con, $sqlCamas)) 
+        {
+            echo "<br><div class=\"result_query success_text\"> Creación correcta de la tabla Recursos. </div>";
+        } 
+        else 
+        {
+            echo "<br><div class=\"result_query error_text\"> Error en la creación de la tabla Recursos" . mysqli_error($con) . "</div>";
+        }
+        mysqli_close($con);
+    }
+    ?>
+    
+    <!--
+        fin de la edicion de pedro.
+    -->
+
+     <!--
+        Pedro estuvo aqui.
+    -->
+    
+    <?php
+    include_once dirname(__FILE__) . '/config/config.php';
+    $con = @mysqli_connect(HOST_DB, USUARIO_DB, USUARIO_PASS, DATABASE_NAME);
+    if (!$con) 
+    {
+        echo "<br><div class=\"result_query error_text\"> Error: No se pudo conectar a MySQL. " . mysqli_connect_error() . "</div>";
+    } 
+    else 
+    {
+        $sqlCamas = "CREATE TABLE Equipos 
+        ( 
+            Numero INT NOT NULL, 
+            NombreDeEquipo CHAR(30) NOT NULL, 
+            Disponible BOOLEAN, 
+            PRIMARY KEY (Numero)
+        )";
+
+        if (mysqli_query($con, $sqlCamas)) 
+        {
+            echo "<br><div class=\"result_query success_text\"> Creación correcta de la tabla Equipos. </div>";
+        } 
+        else 
+        {
+            echo "<br><div class=\"result_query error_text\"> Error en la creación de la tabla Equipos" . mysqli_error($con) . "</div>";
+        }
+        mysqli_close($con);
+    }
+    ?>
+    
+    <!--
+        fin de la edicion de pedro.
+    -->
+
     <br><br>
     <div>
         <a class="back" href="index.php">Regresar</a>
