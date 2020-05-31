@@ -363,7 +363,7 @@
         else 
         {
             $sqlInsertAdmin = 'INSERT INTO Camas (HabNumero, PacienteId, Disponible) 
-            VALUES ( 2, null , true)';
+            VALUES ( 3, null , true)';
             
             if (mysqli_query($con, $sqlInsertAdmin)) 
             {
@@ -387,7 +387,7 @@
         else 
         {
             $sqlInsertAdmin = 'INSERT INTO Camas (HabNumero, PacienteId, Disponible) 
-            VALUES ( 2, null , true)';
+            VALUES ( 4, null , true)';
             
             if (mysqli_query($con, $sqlInsertAdmin)) 
             {

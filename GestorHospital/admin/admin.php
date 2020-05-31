@@ -69,7 +69,7 @@
                 echo '</tr>';
             }
             ?>
-            <!--
+    <!--
         Pedro estuvo aqui.
     -->
      <a href="adresource.php">Visualizar recursos</a>
@@ -77,10 +77,18 @@
         Fin de la edicion de pedro.
     -->
 
-      <!--
+    <!--
         Pedro estuvo aqui.
     -->
     <br><a href="adEquipment.php">Visualizar Equipos</a>
+    <!--
+        Fin de la edicion de pedro.
+    -->
+
+    <!--
+        Pedro estuvo aqui.
+    -->
+    <br><a href="listForm.php">Visualizar solicitudes</a>
     <!--
         Fin de la edicion de pedro.
     -->

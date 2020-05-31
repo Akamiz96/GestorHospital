@@ -32,7 +32,6 @@
                 $numeroDeEquiposEnProceso = mysqli_num_rows($resultado_1);
                 $numeroDeEquiposEnProcesoFinal = $numeroDeEquiposEnProcesoFinal + $numeroDeEquiposEnProceso;
             }
-            $numeroDeEquiposEnProcesoFinal = $numeroDeEquiposEnProcesoFinal + $numeroDeEquiposEnProceso;
         }
 
         echo "numero de equipos que estan en formularios: ".$numeroDeEquiposEnProcesoFinal."<br>";
