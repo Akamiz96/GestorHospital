@@ -185,12 +185,13 @@
             NombrePaciente VARCHAR(20) NOT NULL,
             NombreMedico VARCHAR(20) NOT NULL, 
             FechaYHoraDeSolicitud DATE NOT NULL,
+            Tipo VARCHAR(20) NOT NULL,
             Aprobado BOOLEAN,  
             PRIMARY KEY(Id))";
         if (mysqli_query($con, $sqlSolicitudes)) {
-            echo "<br><div class=\"result_query success_text\"> Creación correcta de la tabla Pacientes. </div>";
+            echo "<br><div class=\"result_query success_text\"> Creación correcta de la tabla Formularios. </div>";
         } else {
-            echo "<br><div class=\"result_query error_text\"> Error en la creación de la tabla Pacientes" . mysqli_error($con) . "</div>";
+            echo "<br><div class=\"result_query error_text\"> Error en la creación de la tabla Formularios" . mysqli_error($con) . "</div>";
         }
         mysqli_close($con);
     }

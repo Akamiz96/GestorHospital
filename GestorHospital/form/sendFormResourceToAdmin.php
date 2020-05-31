@@ -7,7 +7,7 @@ if (mysqli_connect_errno())
     $str_datos.= "Error en la conexión: " . mysqli_connect_error();
 }
     $str_pantalla = "";
-    $str_pantalla.="<h1>Envio de formulario al administrador</h1>";
+    $str_pantalla.="<h1>Envio de formulario de recursos al administrador</h1>";
 
     $nombreMedico = $_POST['nombreMedico'];
     echo $nombreMedico."<br>";
@@ -35,7 +35,7 @@ if (mysqli_connect_errno())
         if(isset($_POST['opcion'.$n]))
         {
             $recursosSolicitados = 0;
-            $sql = "SELECT * FROM Recursos WhERE NombreDeRecurso = '".$_POST['opcion'.$n]."'";
+            $sql = "SELECT * FROM Recursos WhERE Disponible = true and NombreDeRecurso = '".$_POST['opcion'.$n]."'";
             $resultado = mysqli_query($con,$sql);
 
             while($fila = mysqli_fetch_array($resultado)) 
@@ -49,11 +49,11 @@ if (mysqli_connect_errno())
 
                     if(mysqli_query($con,$sql))
                     {
-                        echo "Se ha actualizado la tupla";
+                        echo "Se ha actualizado la tupla<br>";
                     }
                     else
                     {
-                        echo "Error actualizado la tupla";
+                        echo "Error actualizado la tupla<br>";
                     }
 
                 }
@@ -62,8 +62,8 @@ if (mysqli_connect_errno())
         }
     }
 
-    $sqlInsert = 'INSERT INTO Formularios (IdPaciente, NombrePaciente, NombreMedico, FechaYHoraDeSolicitud, Aprobado)'; 
-    $sqlInsert.= "VALUES ( '".$idPaciente."', '".$nombrePaciente."' , '".$nombreMedico."', CAST('".$fecha."' AS DATETIME), false)";
+    $sqlInsert = 'INSERT INTO Formularios (IdPaciente, NombrePaciente, NombreMedico, FechaYHoraDeSolicitud, Tipo, Aprobado)'; 
+    $sqlInsert.= "VALUES ( '".$idPaciente."', '".$nombrePaciente."' , '".$nombreMedico."', CAST('".$fecha."' AS DATETIME),"."'Recursos'".", false)";
     
     if (mysqli_query($con, $sqlInsert)) 
     {
