@@ -13,29 +13,22 @@
     $nombre = $_GET['nombre'];
     $cantidad = $_GET['cantidad'];
 
-    $sql = "SELECT * FROM Recursos"; 
-    $resultado = mysqli_query($con,$sql);
-
-    $numeroDeRecursos = 1;
-
-    while($fila = mysqli_fetch_array($resultado)) 
+    $n = 0;
+    while( $n < $cantidad ) 
     {
-        $numeroDeRecursos++;
-    }
-    
-    $sql = "INSERT INTO Recursos (Numero, NombreDeRecurso, Cantidad) 
-    VALUES ($numeroDeRecursos,'$nombre',$cantidad)";
+        $sql = "INSERT INTO Recursos (NombreDeRecurso, Disponible, IdPaciente)"; 
+        $sql.= " VALUES ( '".$nombre."' , true , null)";
 
-    if(mysqli_query($con,$sql))
-    {
-    echo "Se ha insertado el nuevo recurso exitosamente.";
-    }
-    else
-    {
-    echo "Error insertando el nuevo recurso";
+        if (mysqli_query($con, $sql)) 
+        {
+            echo "<br><div class=\"result_query success_text\"> Inserción de recurso ".$n." correcta. </div>";
+        } else {
+            echo "<br><div class=\"result_query error_text\"> Error en la inserción de recurso ".$n." en la tabla Recursos: " . mysqli_error($con) . "</div>";
+        }
+        $n++;
     }
 
-    $str_datos.="<a href='../admin/adresource.php'> lista de recursos</a>";
+    $str_datos.="<a href='../admin/adresource.php'> volver a lista de recursos</a>";
 
     echo $str_datos;
     mysqli_close($con);

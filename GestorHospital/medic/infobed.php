@@ -137,10 +137,10 @@
 
            
         }
-        else
+        else if(isset($_GET['idMedico3']))
         {
-            $srt_pantalla.='<h3>Id cama</h3>';
-            $srt_pantalla.='<input type="number" name="cama" id="cama" value="'.$_GET['bed'].'" autocomplete="off"><br>';
+            $srt_pantalla.='<input type="hidden" name="cama" id="cama" value="'.$_GET['bed'].'" autocomplete="off"><br>';
+            $srt_pantalla.='<input type="hidden" name="medico" id="medico" value="'.$_GET['idMedico3'].'" autocomplete="off"><br>';
 
             $srt_pantalla.='<h3>Identificación</h3>';
             $srt_pantalla.='<input type="number" name="identificacion" id="identificacion" placeholder="Identificación" autocomplete="off"><br>';

@@ -40,7 +40,7 @@
     $str_datos.= "</table>";
     
     $str_datos.="<a href='medic.php'> volver </a><br><br>";
-    $str_datos.= "<td><a href='infobed.php?bed=".$_GET['bed']."'> Crear un nuevo paciente para la cama ".$_GET['bed']."</td>";
+    $str_datos.= "<td><a href='infobed.php?bed=".$_GET['bed']."&idMedico3=".$idMedico."'> Crear un nuevo paciente para la cama ".$_GET['bed']."</td>";
 
     echo $str_datos;
     mysqli_close($con);

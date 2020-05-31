@@ -15,15 +15,20 @@
         $str_datos.='<th>Comprar</th>';
     $str_datos.='</tr>';
     
-    $sql = "SELECT * FROM Recursos Order by Cantidad asc";
+    $sql = "SELECT * FROM Recursos GROUP BY NombreDeRecurso";
     $resultado = mysqli_query($con,$sql);
+   
     
     while($fila = mysqli_fetch_array($resultado)) 
     {
+        $sql_1 = "SELECT count(NombreDeRecurso) FROM Recursos WHERE NombreDeRecurso ='".$fila['NombreDeRecurso']."'";
+        $resultado_1 = mysqli_query($con,$sql_1);
+        $numeroDeRecusos = mysqli_fetch_row($resultado_1);
+        
         $str_datos.='<tr>';
             $str_datos.= "<td>".$fila['NombreDeRecurso']."</td>";
-            $str_datos.= "<td>".$fila['Cantidad']."</td>";
-            $str_datos.= "<td><a href='../resource/buy.php?id=".$fila['Numero']."'>".$fila['NombreDeRecurso']."</td>";
+            $str_datos.= "<td>".$numeroDeRecusos[0]."</td>";
+            $str_datos.= "<td><a href='../resource/buy.php?nombre=".$fila['NombreDeRecurso']."'> comprar ".$fila['NombreDeRecurso']."</td>";
         $str_datos.= "</tr>";
     }
     $str_datos.= "</table>";

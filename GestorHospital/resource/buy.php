@@ -1,9 +1,13 @@
 
-<h1> Comprar recurso </h1>
-
+<?php
+    if(isset($_GET['nombre']))
+    {
+        echo "<h1> Cuantas unidades de ".$_GET['nombre']." desea comprar recurso </h1>";
+    }
+?>
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
     Cantidad: <input type="number" id="cantidad" name="cantidad"><br>
-    Id: <input type="number" id="id" name="id" value="<?php echo $_GET['id']?>"  > se recomienda no editar este campo<br>
+    <input type="hidden" id="nombre" name="nombre" value="<?php echo $_GET['nombre']?>" ><br>
     <input type="submit" name="submit">
 </form>
 
@@ -17,37 +21,28 @@
         $str_datos.= "Error en la conexión: " . mysqli_connect_error();
     }
 
-
     if(isset($_POST['submit'])) 
     {
-        $id = $_POST['id'];
+        $nombre = $_POST['nombre'];
         $cantidad = $_POST['cantidad'];
 
-        $sql = "SELECT * FROM Recursos"; 
-        $resultado = mysqli_query($con,$sql);
-
-        while($fila = mysqli_fetch_array($resultado)) 
+        $n = 0;
+        while( $n < $cantidad ) 
         {
-            if( $fila['Numero'] === $id )
-            {
-                $cantidadVieja = $fila['Cantidad'];
-                $cantidadNueva = $cantidadVieja + $cantidad;
+            $sql = "INSERT INTO Recursos (NombreDeRecurso, Disponible, IdPaciente)"; 
+            $sql.= " VALUES ( '".$nombre."' , true , null)";
 
-                $sql = "UPDATE Recursos SET Cantidad = '$cantidadNueva' WHERE Numero = $id";
-                
-                if(mysqli_query($con,$sql))
-                {
-                    echo "Se ha actualizado la tupla de ".$id."<br>";
-                }
-                else
-                {
-                    echo "Error actualizando la tupla de ".$id."<br>";
-                }
+            if (mysqli_query($con, $sql)) 
+            {
+                echo "<br><div class=\"result_query success_text\"> Inserción de recurso ".$n." correcta. </div>";
+            } else {
+                echo "<br><div class=\"result_query error_text\"> Error en la inserción de recurso ".$n." en la tabla Recursos: " . mysqli_error($con) . "</div>";
             }
+            $n++;
         }
     }
 
-    $str_datos.="<a href='../admin/adresource.php'> lista de recursos</a>";
+    $str_datos.="<a href='../admin/adresource.php'> volver a lista de recursos </a>";
 
     echo $str_datos;
     mysqli_close($con);

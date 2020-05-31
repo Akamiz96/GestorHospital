@@ -13,6 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if($GLOBALS['Rol'] == 'MEDICO')
                 {
                     session_id($_POST['username']);
+                    session_start();
                     header('Location: medic/medic.php');
                 }
                 if ($GLOBALS['Rol'] == 'ADMIN') 
