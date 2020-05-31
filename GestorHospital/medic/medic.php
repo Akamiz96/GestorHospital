@@ -8,46 +8,23 @@
 </head>
 
 <body>
-    
-    
-    <?php
+    <tbody>
+        <?php
         session_start();
         $varf = session_id();
         echo "<h1>Bienvenido ".$varf."</h1>";
-    ?>
 
-    <table border="1" style="width:100%">
-        <caption>Lista de Habitaciones disponibles</caption>
-        <thead>
-            <tr>
-                <th>Habitación número</th>
-                <th>Asignar</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            $varf = session_id();
+        include_once dirname(__FILE__) . '/../config/config.php';
+        include_once dirname(__FILE__) . '/../admin/sqlqueries/habs.php';
+        
+        $str_pantalla ='';
+        
+        $str_pantalla.= "<a href='choseHab.php?idMed=".$varf."'>ver las habitaciones<br><br>";
+        $str_pantalla.= "<a href='petitionPacients.php?idMed=".$varf."'>ver a los pacientes<br><br>";
 
-            include_once dirname(__FILE__) . '/../config/config.php';
-            include_once dirname(__FILE__) . '/../admin/sqlqueries/habs.php';
-            
-            $habitaciones = list_habs();
-            $str_pantalla ='';
-            
-            while ($fila = mysqli_fetch_array($habitaciones)) 
-            {
-                $str_pantalla.='<tr>';
-                $str_pantalla.= "<td>".$fila['Numero']."</td>";
-                $str_pantalla.= "<td><a href='choseBed.php?idHab=".$fila['Numero']."&idMedico=".$varf."'>Ver camas</td>";
-                $str_pantalla.= "</tr>";
-                
-            }
-
-            echo $str_pantalla;
-            ?>
-        </tbody>
-    </table>
-
+        echo $str_pantalla;
+        ?>
+    </tbody>
 </body>
 
 </html>

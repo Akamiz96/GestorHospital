@@ -109,7 +109,8 @@
             Numero INT NOT NULL AUTO_INCREMENT, 
             NombreDeRecurso CHAR(30) NOT NULL, 
             Disponible BOOLEAN NOT NULL,
-            IdPaciente BIGINT, 
+            IdPaciente BIGINT,
+            IdFormulario BIGINT, 
             PRIMARY KEY (Numero)
         )";
 
@@ -147,7 +148,8 @@
             Numero INT NOT NULL AUTO_INCREMENT, 
             NombreDeEquipo CHAR(30) NOT NULL, 
             Disponible BOOLEAN,
-            IdPaciente BIGINT, 
+            IdPaciente BIGINT,
+            IdFormulario BIGINT, 
             PRIMARY KEY (Numero)
         )";
 
@@ -177,14 +179,13 @@
     if (!$con) {
         echo "<br><div class=\"result_query error_text\"> Error: No se pudo conectar a MySQL. " . mysqli_connect_error() . "</div>";
     } else {
-        $sqlSolicitudes = "CREATE TABLE Solicitudes ( 
+        $sqlSolicitudes = "CREATE TABLE Formularios ( 
             Id INT NOT NULL AUTO_INCREMENT,
-            IdPaciente BIGINT NOT NULL,
-            IdMedico BIGINT NOT NULL, 
+            IdPaciente BIGINT NOT NULL, 
             NombrePaciente VARCHAR(20) NOT NULL,
             NombreMedico VARCHAR(20) NOT NULL, 
-            FechaYHoraDeSolicitud DATE NOT NULL, 
-            
+            FechaYHoraDeSolicitud DATE NOT NULL,
+            Aprobado BOOLEAN,  
             PRIMARY KEY(Id))";
         if (mysqli_query($con, $sqlSolicitudes)) {
             echo "<br><div class=\"result_query success_text\"> Creación correcta de la tabla Pacientes. </div>";
