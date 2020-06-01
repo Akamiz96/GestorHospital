@@ -17,7 +17,8 @@
         
         $str_pantalla ='';
 
-        $str_pantalla.="<br><a href='addhab.php'>Visualizar habitaciones</a>";        
+        $str_pantalla.="<br><a href='addhab.php'>Visualizar habitaciones</a>";
+        $str_pantalla.="<br><a href='adPacient.php'>Visualizar pacientes</a>";           
         $str_pantalla.="<br><a href='adresource.php'>Visualizar recursos</a>";
         $str_pantalla.="<br><a href='adEquipment.php'>Visualizar equipos</a>";
         $str_pantalla.="<br><a href='listForm.php'>Visualizar solicitudes</a>";

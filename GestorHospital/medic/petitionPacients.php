@@ -22,6 +22,7 @@
         $str_datos.='<th>Apellido</th>';
         $str_datos.='<th>asignar equipo </th>';
         $str_datos.='<th>asignar recurso </th>';
+        $str_datos.='<th>ver equipos asignados </th>';
     $str_datos.='</tr>';
     
     $sql = 'SELECT * FROM PACIENTES';
@@ -37,7 +38,7 @@
                 $str_datos.= "<td>".$fila['Apellido']."</td>";
                 $str_datos.= "<td><a href='../form/formEquipment.php?idPaciente=".$fila['Identificacion']."&nombrePaciente=".$fila['Nombre']."&nombreMedico=".$idMedico."'>Asignar equipo</td>";
                 $str_datos.= "<td><a href='../form/formResource.php?idPaciente=".$fila['Identificacion']."&nombrePaciente=".$fila['Nombre']."&nombreMedico=".$idMedico."'>Asignar recurso</td>";
-
+                $str_datos.= "<td><a href='../pacient/listEquipmentForMedic.php?idPaciente=".$fila['Identificacion']."&nombre=".$fila['Nombre']."'>ver equipos</td>";
             $str_datos.= "</tr>";
         }
     }
