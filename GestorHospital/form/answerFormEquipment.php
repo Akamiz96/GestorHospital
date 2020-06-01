@@ -52,6 +52,7 @@
             $str_datos.= "<input type='hidden' id='numeroDeEquipos' name='numeroDeEquipos' value=".$n."/>"; 
             $str_datos.= "<input type='hidden' name='idPaciente' value='".$fila['IdPaciente']."'/>";
             $str_datos.= "<input type='hidden' name='idFormulario' value='".$fila['Id']."'/>";
+            $str_datos.= "<input type='hidden' name='nombreMedico' value='".$fila['NombreMedico']."'/>";
         }
         $str_datos.='<input type="submit" value="Enviar">';
         $str_datos.='</form>';
@@ -77,10 +78,12 @@
     {
         $numeroDeOpciones = $_POST['numeroDeEquipos'];
         $n = 0;
+        $correo ='';
+
         while($n < $numeroDeOpciones)
         {
             $n++;
-            if (isset($_POST['opcion'.$n]) && isset($_POST['nombre'.$n]) && isset($_POST['numero'.$n]) && isset($_POST['idPaciente']) && isset($_POST['idFormulario'])) 
+            if (isset($_POST['opcion'.$n]) && isset($_POST['nombre'.$n]) && isset($_POST['numero'.$n]) && isset($_POST['idPaciente']) && isset($_POST['idFormulario']) && isset($_POST['nombreMedico'])) 
             {
                 if($_POST['opcion'.$n] == "Aceptado")
                 {
@@ -96,7 +99,7 @@
                 
                         if(mysqli_query($con,$sql_1))
                         {
-                            echo "Se ha actualizado el equipo: ".$fila['NombreDeEquipo']."<br>";
+                            $correo.="Se ha asinado el equipo: ".$fila['NombreDeEquipo']." al paciente con la cedula ".$_POST['idPaciente'].".<br>";
                         }
                         else
                         {
@@ -118,7 +121,7 @@
                         
                         if(mysqli_query($con,$sql_1))
                         {
-                            echo "Se ha actualizado el equipo: ".$fila['NombreDeEquipo']."<br>";
+                            $correo.="Se ha liberado el equipo: ".$fila['NombreDeEquipo']." no se asigno al paciente con la cedula ".$_POST['idPaciente'].".<br>";
                         }
                         else
                         {
@@ -127,15 +130,31 @@
                     }
                 }
 
-                $sql = "UPDATE Formularios SET Aprobado = true WHERE Id =".$_POST['idFormulario'];
+                if($n == $numeroDeOpciones)
+                {
+                    $sql = "UPDATE Formularios SET Aprobado = true WHERE Id =".$_POST['idFormulario'];
 
-                if(mysqli_query($con,$sql))
-                {
-                    echo "Se ha actualizado el formulario: ".$_POST['idFormulario']."<br>";
-                }
-                else
-                {
-                    echo "Error actualizado al formulario: ".mysqli_error($con)."<br>";
+                    if(mysqli_query($con,$sql))
+                    {
+                        $correo.= "Por ultimo hay que informar que el formulario con el id ".$_POST['idFormulario']." ya se respondio satisfactoriamente.<br>";
+                    }
+                    else
+                    {
+                        echo "Error actualizado al formulario: ".mysqli_error($con)."<br>";
+                    }
+
+                    $sqlInsertEmail = "INSERT INTO Correos (Informe, NombreMedico)"; 
+                    $sqlInsertEmail.= " VALUES ( '".$correo."','".$_POST['nombreMedico']."')";
+                    
+                    if (mysqli_query($con, $sqlInsertEmail)) 
+                    {
+                        echo $_POST['nombreMedico']." mensaje: ".$correo."<br><br>";
+                        echo "<br><div class=\"result_query success_text\"> Inserción del correo exitosa. </div>";
+                    } 
+                    else 
+                    {
+                        echo "<br><div class=\"result_query error_text\"> Error en la inserción del correo: " . mysqli_error($con) . "</div>";
+                    }       
                 }
             }
             else

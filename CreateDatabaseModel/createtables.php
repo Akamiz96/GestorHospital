@@ -232,6 +232,26 @@
     }
     ?>
 
+<?php
+    include_once dirname(__FILE__) . '/config/config.php';
+    $con = @mysqli_connect(HOST_DB, USUARIO_DB, USUARIO_PASS, DATABASE_NAME);
+    if (!$con) {
+        echo "<br><div class=\"result_query error_text\"> Error: No se pudo conectar a MySQL. " . mysqli_connect_error() . "</div>";
+    } else {
+        $sqlCorreos = "CREATE TABLE Correos ( 
+            Id BIGINT NOT NULL AUTO_INCREMENT, 
+            Informe VARCHAR(500) NOT NULL, 
+            NombreMedico VARCHAR(20) NOT NULL,
+            PRIMARY KEY(Id))";
+        if (mysqli_query($con, $sqlCorreos)) {
+            echo "<br><div class=\"result_query success_text\"> Creación correcta de la tabla correos. </div>";
+        } else {
+            echo "<br><div class=\"result_query error_text\"> Error en la creación de la tabla correos" . mysqli_error($con) . "</div>";
+        }
+        mysqli_close($con);
+    }
+    ?>
+
       <!--
         fin de la edicion de pedro.
     -->

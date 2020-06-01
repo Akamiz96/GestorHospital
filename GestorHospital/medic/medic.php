@@ -21,6 +21,7 @@
         
         $str_pantalla.= "<a href='choseHab.php?idMed=".$varf."'>ver las habitaciones<br><br>";
         $str_pantalla.= "<a href='petitionPacients.php?idMed=".$varf."'>ver a los pacientes<br><br>";
+        $str_pantalla.= "<a href='email.php?idMed=".$varf."'>email<br><br>";
 
         echo $str_pantalla;
         ?>
