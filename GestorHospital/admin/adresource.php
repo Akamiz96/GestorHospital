@@ -46,7 +46,6 @@
         $str_datos.='<th>Nombre</th>';
         $str_datos.='<th>Cantidad</th>';
         $str_datos.='<th>Disponible</th>';
-        $str_datos.='<th>Formulario</th>';
         $str_datos.='<th>Comprar</th>';
     $str_datos.='</tr>';
     $str_datos.= "<h3>Tabla de no disponibles porque están en espera de ser asignados o agotados<h3>";
@@ -68,7 +67,6 @@
             {
                 $str_datos.= "<td>No</td>";
             }
-            $str_datos.= "<td>".$fila['IdFormulario']."</td>";
             $str_datos.= "<td><a href='../resource/buy.php?nombre=".$fila['NombreDeRecurso']."'> comprar ".$fila['NombreDeRecurso']."</td>";
         $str_datos.= "</tr>";
     }

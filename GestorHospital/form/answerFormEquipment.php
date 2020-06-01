@@ -11,11 +11,10 @@
     if(isset($_GET['idFormulario']))
     {
         $idFormulario = $_GET['idFormulario'];
-
-        $str_datos.='<form action="answerFormResource.php" method="post">';
+        $str_datos.='<form action="answerFormEquipment.php" method="post">';
         $str_datos.='<table border="1" style="width:100%">';
         $str_datos.='<tr>';
-            $str_datos.='<th>Recurso</th>';
+            $str_datos.='<th>Equipo</th>';
             $str_datos.='<th>Cantidad solicitada</th>';
             $str_datos.='<th>Aceptar</th>';
             $str_datos.='<th>Rechazar</th>';
@@ -24,14 +23,14 @@
         $sql = "SELECT * FROM Formularios WHERE Id = ".$idFormulario;
         $resultado = mysqli_query($con,$sql);
 
-        while( $fila = mysqli_fetch_array($resultado) )
+        while($fila = mysqli_fetch_array($resultado))
         {
             $str_datos.= "<h2>Pedido del medico: ".$fila['NombreMedico']."<h2>";
             
-            $sql_1 ="   SELECT NombreDeRecurso , count(NombreDeRecurso) as Cantidad
-                        FROM Recursos 
+            $sql_1 ="   SELECT NombreDeEquipo , count(NombreDeEquipo) as Cantidad
+                        FROM Equipos 
                         WHERE IdFormulario = ".$idFormulario." 
-                        GROUP BY NombreDeRecurso";
+                        GROUP BY NombreDeEquipo";
             
             $n = 0;
             $resultado_1 = mysqli_query($con,$sql_1);
@@ -39,10 +38,10 @@
             {
                 $n++;
                 $str_datos.='<tr>';
-                    $str_datos.= "<td>".$fila_1['NombreDeRecurso']."</td>";
+                    $str_datos.= "<td>".$fila_1['NombreDeEquipo']."</td>";
                     $str_datos.= "<td>".$fila_1['Cantidad']."</td>";
 
-                    $str_datos.= "<input type='hidden' name='nombre".$n."' value='".$fila_1['NombreDeRecurso']."'/>";
+                    $str_datos.= "<input type='hidden' name='nombre".$n."' value='".$fila_1['NombreDeEquipo']."'/>";
                     $str_datos.= "<input type='hidden' name='numero".$n."' value='".$fila_1['Cantidad']."'/>";
                    
 
@@ -50,7 +49,7 @@
                     $str_datos.= "<td><input type='radio'  name='opcion".$n."' value='Rechazado'/></td>";           
                 $str_datos.= "</tr>";
             }
-            $str_datos.= "<input type='hidden' id='numeroDeRecursos' name='numeroDeRecursos' value=".$n."/>"; 
+            $str_datos.= "<input type='hidden' id='numeroDeEquipos' name='numeroDeEquipos' value=".$n."/>"; 
             $str_datos.= "<input type='hidden' name='idPaciente' value='".$fila['IdPaciente']."'/>";
             $str_datos.= "<input type='hidden' name='idFormulario' value='".$fila['Id']."'/>";
         }
@@ -76,7 +75,7 @@
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") 
     {
-        $numeroDeOpciones = $_POST['numeroDeRecursos'];
+        $numeroDeOpciones = $_POST['numeroDeEquipos'];
         $n = 0;
         while($n < $numeroDeOpciones)
         {
@@ -85,45 +84,45 @@
             {
                 if($_POST['opcion'.$n] == "Aceptado")
                 {
-                    $sql = "SELECT * FROM Recursos WHERE IdFormulario =".$_POST['idFormulario']." and NombreDeRecurso = '".$_POST['nombre'.$n]."'";
+                    $sql = "SELECT * FROM Equipos WHERE IdFormulario =".$_POST['idFormulario']." and NombreDeEquipo = '".$_POST['nombre'.$n]."'";
                     $resultado = mysqli_query($con,$sql);
 
                     while( $fila = mysqli_fetch_array($resultado) )
                     {
-                        $sql_1 = "  UPDATE Recursos
+                        $sql_1 = "  UPDATE Equipos
                                     SET IdFormulario = null,
                                         IdPaciente =".$_POST['idPaciente']."
                                     WHERE Numero = ".$fila['Numero'];
                 
                         if(mysqli_query($con,$sql_1))
                         {
-                            echo "Se ha actualizado el recurso: ".$fila['NombreDeRecurso']."<br>";
+                            echo "Se ha actualizado el equipo: ".$fila['NombreDeEquipo']."<br>";
                         }
                         else
                         {
-                            echo "Error actualizado al recurso: ".mysqli_error($con)."<br>";
+                            echo "Error actualizado al equipo: ".mysqli_error($con)."<br>";
                         }
                     }
                 } 
                 else if($_POST['opcion'.$n] == "Rechazado")
                 {
-                    $sql = "SELECT * FROM Recursos WHERE IdFormulario =".$_POST['idFormulario']." and NombreDeRecurso = '".$_POST['nombre'.$n]."'";
+                    $sql = "SELECT * FROM Equipos WHERE IdFormulario =".$_POST['idFormulario']." and NombreDeEquipo = '".$_POST['nombre'.$n]."'";
                     $resultado = mysqli_query($con,$sql);
 
                     while( $fila = mysqli_fetch_array($resultado) )
                     {
-                        $sql_1 = "  UPDATE Recursos
+                        $sql_1 = "  UPDATE Equipos
                                     SET IdFormulario = null,
                                         Disponible = true
                                     WHERE Numero = ".$fila['Numero'];
                         
                         if(mysqli_query($con,$sql_1))
                         {
-                            echo "Se ha actualizado el recurso: ".$fila['NombreDeRecurso']."<br>";
+                            echo "Se ha actualizado el equipo: ".$fila['NombreDeEquipo']."<br>";
                         }
                         else
                         {
-                            echo "Error actualizado al recurso: ".mysqli_error($con)."<br>";
+                            echo "Error actualizado al equipo: ".mysqli_error($con)."<br>";
                         }
                     }
                 }
@@ -143,7 +142,7 @@
             {
                 $str_datos.= "Al parecer algunos campos del formulario no fueron llenados<br>";
             }
-        }   
+        }  
     }
 
     echo $str_datos;

@@ -42,11 +42,12 @@
         $str_datos.='<th>NombrePaciente</th>';
         $str_datos.='<th>Prioridad</th>';
         $str_datos.='<th>FechaDeSolicitud</th>';
+        $str_datos.='<th>Responder</th>';
     $str_datos.='</tr>';
     
     $str_datos.= "<h3>Tabla de formularios para pedir equipos<h3>";
 
-    $sql = "SELECT * FROM Formularios WHERE Tipo = 'Equipos' ORDER BY FechaYHoraDeSolicitud";
+    $sql = "SELECT * FROM Formularios WHERE Tipo = 'Equipos' and Aprobado = false ORDER BY FechaYHoraDeSolicitud";
     $resultado = mysqli_query($con,$sql);
    
     while($fila = mysqli_fetch_array($resultado)) 
@@ -63,6 +64,7 @@
                 $str_datos.= "<td>".$fila['NombrePaciente']."</td>";
                 $str_datos.= "<td>".$fila_1['Prioridad']."</td>";
                 $str_datos.= "<td>".$fila['FechaYHoraDeSolicitud']."</td>";
+                $str_datos.="<td><a href='../form/answerFormEquipment.php?idFormulario=".$fila['Id']."'> responder </a></td>";
             $str_datos.= "</tr>";
         }
     }
@@ -83,6 +85,7 @@
                 $str_datos.= "<td>".$fila['NombrePaciente']."</td>";
                 $str_datos.= "<td>".$fila_1['Prioridad']."</td>";
                 $str_datos.= "<td>".$fila['FechaYHoraDeSolicitud']."</td>";
+                $str_datos.="<td><a href='../form/answerFormEquipment.php?idFormulario=".$fila['Id']."'> responder </a></td>";
             $str_datos.= "</tr>";
         }
     }
@@ -102,6 +105,7 @@
                 $str_datos.= "<td>".$fila['NombrePaciente']."</td>";
                 $str_datos.= "<td>".$fila_1['Prioridad']."</td>";
                 $str_datos.= "<td>".$fila['FechaYHoraDeSolicitud']."</td>";
+                $str_datos.="<td><a href='../form/answerFormEquipment.php?idFormulario=".$fila['Id']."'> responder </a></td>";
             $str_datos.= "</tr>";
         }
     }
