@@ -11,29 +11,23 @@
     }
 
     $nombre = $_GET['nombre'];
-
-    $sql = "SELECT * FROM Equipos"; 
-    $resultado = mysqli_query($con,$sql);
-
-    $numeroDeEquipos = 1;
-
-    while($fila = mysqli_fetch_array($resultado)) 
-    {
-        $numeroDeEquipos++;
-    }
+    $cantidad = $_GET['cantidad']; 
     
-    
-    $sql = "INSERT INTO Equipos (Numero , nombreDeEquipo, Disponible) VALUES ($numeroDeEquipos,'$nombre',true)";
-
-    if(mysqli_query($con,$sql))
+    $n = 0;
+    while($n < $cantidad)
     {
-    echo "Se ha insertado el nuevo equipo exitosamente.";
-    }
-    else
-    {
-    echo "Error insertando el nuevo equipo";
-    }
+        $n++;
+        $sql = "INSERT INTO Equipos (nombreDeEquipo, Disponible, IdPaciente, IdFormulario) VALUES ('$nombre', true, null, null)";
 
+        if(mysqli_query($con,$sql))
+        {
+        echo "Se ha insertado el nuevo equipo exitosamente.<br>";
+        }
+        else
+        {
+        echo "Error insertando el nuevo equipo<br>";
+        }
+    }
     $str_datos.="<a href='../admin/adEquipment.php'> lista de Equipos</a>";
 
     echo $str_datos;
