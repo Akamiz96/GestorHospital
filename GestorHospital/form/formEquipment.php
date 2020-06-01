@@ -40,6 +40,8 @@
         $resultado = mysqli_query($con,$sql);
         $numeroDeEquiposYaAsignadosAlPaciente = mysqli_num_rows($resultado);
 
+        echo "numero de equipos ya asignados al paciente: ".$numeroDeEquiposYaAsignadosAlPaciente."<br>";
+
         $numeroDeEquiposEnProcesoFinal = $numeroDeEquiposEnProcesoFinal + $numeroDeEquiposYaAsignadosAlPaciente;
 
         $sql = "SELECT * FROM Pacientes WHERE Identificacion = ".$idPaciente;
