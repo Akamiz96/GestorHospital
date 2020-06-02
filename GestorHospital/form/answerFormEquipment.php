@@ -144,12 +144,19 @@
                     }
 
                     $sqlInsertEmail = "INSERT INTO Correos (Informe, NombreMedico)"; 
-                    $sqlInsertEmail.= " VALUES ( '".$correo."','".$_POST['nombreMedico']."')";
-                    
+                    $sqlInsertEmail.= " VALUES ( '".$correo."','".$_POST['nombreMedico']."')";        
                     if (mysqli_query($con, $sqlInsertEmail)) 
                     {
-                        echo $_POST['nombreMedico']." mensaje: ".$correo."<br><br>";
-                        echo "<br><div class=\"result_query success_text\"> Inserción del correo exitosa. </div>";
+                        $sql_email = "SELECT Email FROM USUARIOS WHERE Username=\'" . $_POST['nombreMedico'] . "\'";
+                        if ($respuesta_1 = mysqli_query($con, $sqlInsertEmail)) {
+                            $fila_1 = mysqli_fetch_array($respuesta_1);
+                            $email_to = $fila_1['Email'];
+                            echo $_POST['nombreMedico'] . " mensaje: " . $correo . "<br><br>";
+                            echo "<br><div class=\"result_query success_text\"> Inserción del correo y envio exitoso. </div>";
+                            mail($email_to, 'Solicitud SaludSis', $correo);
+                        }else{
+                        echo "<br><div class=\"result_query error_text\"> Correo no enviado." . mysqli_error($con) . "</div>";
+                        }
                     } 
                     else 
                     {

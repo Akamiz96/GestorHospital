@@ -24,23 +24,30 @@
 
     $sql = "SELECT * FROM Pacientes";
     $respuesta = mysqli_query($con,$sql);
-
-    while( $fila = mysqli_fetch_array($respuesta) )
+    if(mysqli_affected_rows($con) > 0)
     {
-        $sql_1 = "SELECT h.Numero as id FROM Camas as c, Habitaciones as h WHERE c.Numero = ".$fila['IdCama']." and c.HabNumero = h.Numero";
-        $respuesta_1 = mysqli_query($con,$sql_1);
-        $fila_1 = mysqli_fetch_array($respuesta_1);
-
-        $str_datos.='<tr>';
-            $str_datos.= "<td>".$fila['Identificacion']."</td>";
-            $str_datos.= "<td>".$fila['Nombre']."</td>";
-            $str_datos.= "<td>".$fila['Prioridad']."</td>";
-            $str_datos.= "<td>".$fila['NombreMedico']."</td>";
-            $str_datos.= "<td>".$fila_1['id']."</td>";
-            $str_datos.= "<td>".$fila['IdCama']."</td>";
-            $str_datos.= "<td><a href='../pacient/listResource.php?idPaciente=".$fila['Identificacion']."&nombre=".$fila['Nombre']."'>ver recursos</td>";
-            $str_datos.= "<td><a href='../pacient/listEquipment.php?idPaciente=".$fila['Identificacion']."&nombre=".$fila['Nombre']."'>ver equipos</td>";
-       $str_datos.= "</tr>";
+        while ($fila = mysqli_fetch_array($respuesta)) {
+            $sql_1 = "SELECT h.Numero as id FROM Camas as c, Habitaciones as h WHERE c.Numero = " . $fila['IdCama'] . " and c.HabNumero = h.Numero";
+            $respuesta_1 = mysqli_query($con, $sql_1);
+            if (mysqli_affected_rows($con) > 0){
+                $fila_1 = mysqli_fetch_array($respuesta_1);
+            }
+            $str_datos .= '<tr>';
+            $str_datos .= "<td>" . $fila['Identificacion'] . "</td>";
+            $str_datos .= "<td>" . $fila['Nombre'] . "</td>";
+            $str_datos .= "<td>" . $fila['Prioridad'] . "</td>";
+            $str_datos .= "<td>" . $fila['NombreMedico'] . "</td>";
+            if (mysqli_affected_rows($con) > 0) {
+                $str_datos .= "<td>" . $fila_1['id'] . "</td>";
+            }else{
+                $str_datos .= "<td>" . "</td>";
+            }
+            
+            $str_datos .= "<td>" . $fila['IdCama'] . "</td>";
+            $str_datos .= "<td><a href='../pacient/listResource.php?idPaciente=" . $fila['Identificacion'] . "&nombre=" . $fila['Nombre'] . "'>ver recursos</td>";
+            $str_datos .= "<td><a href='../pacient/listEquipment.php?idPaciente=" . $fila['Identificacion'] . "&nombre=" . $fila['Nombre'] . "'>ver equipos</td>";
+            $str_datos .= "</tr>";
+        }
     }
     $str_datos.= "</table>";
  
