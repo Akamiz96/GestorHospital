@@ -147,9 +147,9 @@
                     $sqlInsertEmail.= " VALUES ( '".$correo."','".$_POST['nombreMedico']."')";        
                     if (mysqli_query($con, $sqlInsertEmail)) 
                     {
-                        $sql_email = "SELECT Email FROM USUARIOS WHERE Username=\'" . $_POST['nombreMedico'] . "\'";
-                        if ($respuesta_1 = mysqli_query($con, $sqlInsertEmail)) {
-                            $fila_1 = mysqli_fetch_array($respuesta_1);
+                        $sql_email = "SELECT Email FROM USUARIOS WHERE Username='" . $_POST['nombreMedico'] . "'";
+                        if ($result = mysqli_query($con, $sql_email)) {
+                            $fila_1 = mysqli_fetch_array($result);
                             $email_to = $fila_1['Email'];
                             echo $_POST['nombreMedico'] . " mensaje: " . $correo . "<br><br>";
                             echo "<br><div class=\"result_query success_text\"> Inserción del correo y envio exitoso. </div>";
