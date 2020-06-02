@@ -22,6 +22,7 @@
         $str_pantalla.="<br><a href='adresource.php'>Visualizar recursos</a>";
         $str_pantalla.="<br><a href='adEquipment.php'>Visualizar equipos</a>";
         $str_pantalla.="<br><a href='listForm.php'>Visualizar solicitudes</a>";
+        $str_pantalla .= "<br><a href='addadmin.php'>adicionar administrador</a>";
         echo $str_pantalla;
         ?>
     </tbody>
